@@ -1,5 +1,4 @@
 
-
 // alert('Hola desde app.js')
 
 // console.log('Hola mundo');
@@ -21,4 +20,5 @@ c = 'Hola de nuevo';
 
 // console.table({ a, b, c, d, x });
 
-var miNombre = 'Tobías';
+
+let miNuevoNombre = 'Tobías Vega';
