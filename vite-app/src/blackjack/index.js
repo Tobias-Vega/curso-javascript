@@ -1,5 +1,7 @@
 import _ from 'underscore';
-import { crearDeck } from './usecases/crear-deck'
+import { crearDeck } from './usecases/crear-deck';
+import { pedirCarta } from './usecases/pedir-carta';
+import { valorCarta } from './usecases/valor-carta';
 
 let deck = [];
 const tipos = ['C', 'D', 'H', 'S'],
@@ -16,7 +18,6 @@ const divCartasJugadores = document.querySelectorAll('.divCartas'),
   puntosHTML = document.querySelectorAll('small');
 
 // Esta función inicializa el juego
-
 const inicializarJuego = (numJugadores = 2) => {
   deck = crearDeck(tipos, especiales, deck);
 
@@ -30,20 +31,6 @@ const inicializarJuego = (numJugadores = 2) => {
 
   btnPedir.disabled = false;
   btnDetener.disabled = false;
-};
-
-// Esta función me permite tomar una carta
-const pedirCarta = () => {
-  if (deck.length === 0) {
-    throw 'No hay cartas en el deck';
-  }
-
-  return deck.pop();
-};
-
-const valorCarta = (carta) => {
-  const valor = carta.substring(0, carta.length - 1);
-  return isNaN(valor) ? (valor === 'A' ? 11 : 10) : valor * 1;
 };
 
 // Turno: 0 = primer jugador y el último será la computadora
@@ -82,7 +69,7 @@ const determinarGanador = () => {
 const turnoComputadora = (puntosMinimos) => {
   let puntosComputadora = 0;
   do {
-    const carta = pedirCarta();
+    const carta = pedirCarta(deck);
     puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
     crearCarta(carta, puntosJugadores.length - 1);
   } while (puntosComputadora < puntosMinimos && puntosMinimos <= 21);
@@ -92,7 +79,7 @@ const turnoComputadora = (puntosMinimos) => {
 
 // Eventos
 btnPedir.addEventListener('click', () => {
-  const carta = pedirCarta();
+  const carta = pedirCarta(deck);
   const puntosJugador = acumularPuntos(carta, 0);
 
   crearCarta(carta, 0);
