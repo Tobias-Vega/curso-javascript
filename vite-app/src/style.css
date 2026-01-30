@@ -1,8 +1,26 @@
-#app {
-  font-family: Avenir, Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+html, body {
+  margin: 0;
+  background-color: #2F4F30;
+}
+
+h1 {
+  color: white;
+}
+
+.titulo {
   text-align: center;
-  margin-top: 60px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  font-size: 25px;
+}
+.carta {
+  position: relative;
+  width: 150px;
+  left: 100px;
+  margin-left: -75px;
+}
+
+#computadora-cartas, #jugador-cartas {
+  height: 240px;
 }
