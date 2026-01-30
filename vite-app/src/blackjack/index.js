@@ -32,9 +32,6 @@ const inicializarJuego = (numJugadores = 2) => {
   btnDetener.disabled = false;
 };
 
-// Esta función crea una nueva baraja
-
-
 // Esta función me permite tomar una carta
 const pedirCarta = () => {
   if (deck.length === 0) {
