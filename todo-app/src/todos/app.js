@@ -34,6 +34,7 @@ export const App = (elementId) => {
 
   // Referencias HTML
   const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
+  const todoListUl = document.querySelector(ElementIDs.TodoList);
 
   // Listeners
   newDescriptionInput.addEventListener('keyup', (event) => {
@@ -42,5 +43,12 @@ export const App = (elementId) => {
 
     todoStore.addTodo(event.target.value);
     displayTodos();
-  })
+    event.target.value = '';
+  });
+
+  todoListUl.addEventListener('click', (event) => {
+    const element = event.target.closest('[data-id]');
+    todoStore.toggleTodo(element.getAttribute('data-id'));
+    displayTodos();
+  });
 };
