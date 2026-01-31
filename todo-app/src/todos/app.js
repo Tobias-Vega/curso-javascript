@@ -15,7 +15,6 @@ const ElementIDs = {
 
 export const App = (elementId) => {
   const displayTodos = () => {
-
     const todoList = document.querySelector(ElementIDs.TodoList);
 
     todoList.innerHTML = '';
@@ -49,6 +48,16 @@ export const App = (elementId) => {
   todoListUl.addEventListener('click', (event) => {
     const element = event.target.closest('[data-id]');
     todoStore.toggleTodo(element.getAttribute('data-id'));
+    displayTodos();
+  });
+
+  todoListUl.addEventListener('click', (event) => {
+
+    const isDetroyElement = event.target.className === 'destroy';
+    const element = event.target.closest('[data-id]');
+    if (!element || !isDetroyElement) return;
+
+    todoStore.deleteTodo(element.getAttribute('data-id'));
     displayTodos();
   });
 };
