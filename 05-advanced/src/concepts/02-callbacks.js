@@ -5,9 +5,10 @@ import { heroes } from '../data/heroes';
  * @param {HTMLDivElement} element
  */
 export const callbacksComponent = (element) => {
-  const id = '5d86371f233c9f2425f16916';
+  const id1 = '5d86371f233c9f2425f16916';
+  const id2 = '5d86371fd55e2e2a30fe1ccb';
 
-  findHero(id, (error, hero) => {
+  findHero(id1, (error, hero1) => {
     // element.innerHTML = hero?.name || 'No hay heroe';
 
     if (error) {
@@ -15,7 +16,14 @@ export const callbacksComponent = (element) => {
       return;
     }
 
-    element.innerHTML = hero.name;
+    findHero(id2, (error, hero2) => {
+      if (error) {
+        element.innerHTML = error;
+        return;
+      }
+
+      element.innerHTML = `${hero1.name} / ${hero2.name}`;
+    });
   });
 };
 
