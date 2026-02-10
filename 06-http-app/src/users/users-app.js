@@ -10,4 +10,6 @@ export const UserApp = async (element) => {
 
   await usersStore.loadNextPage();
 
+  console.log(usersStore.getUsers())
+
 }
