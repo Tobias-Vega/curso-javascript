@@ -1,28 +1,19 @@
-import { loadUsersByPage } from "../use-cases/load-users-by-page"
+import { loadUsersByPage } from '../use-cases/load-users-by-page';
 
 const state = {
   currentPage: 0,
-  users: []
-}
+  users: [],
+};
 
 const loadNextPage = async () => {
+  await loadUsersByPage(state.currentPage + 1);
+};
 
-  await loadUsersByPage(state.currentPage + 1)
+const loadpreviousPage = async () => {};
 
-}
+const onUserChanged = () => {};
 
-const loadpreviousPage = async () => {
-  
-}
-
-const onUserChanged = () => {
-
-}
-
-
-const reloadPage = () => {
-
-}
+const reloadPage = () => {};
 
 export default {
   loadNextPage,
@@ -32,4 +23,4 @@ export default {
 
   getUser: () => [...state.users],
   getCurrentPage: () => state.currentPage,
-}
+};
