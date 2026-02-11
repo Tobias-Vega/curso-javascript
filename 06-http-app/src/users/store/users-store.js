@@ -10,16 +10,16 @@ const loadNextPage = async () => {
 
   if (state.currentPage >= pages) return;
 
-  state.currentPage++;
   state.users = users;
+  state.currentPage+= 1;
 };
 
 const loadpreviousPage = async () => {
   if (state.currentPage === 1) return;
   const { users } = await loadUsersByPage(state.currentPage - 1);
 
-  state.currentPage--;
   state.users = users;
+  state.currentPage-= 1;
 };
 
 /**
@@ -27,7 +27,6 @@ const loadpreviousPage = async () => {
  * @param {User} user
  */
 const onUserChanged = (updatedUser) => {
-
   let wasFound = false;
   state.users = state.users.map((user) => {
     if (user.id === updatedUser.id) {
@@ -42,7 +41,16 @@ const onUserChanged = (updatedUser) => {
   }
 };
 
-const reloadPage = () => {};
+const reloadPage = async () => {
+  const { users } = await loadUsersByPage(state.currentPage);
+
+  if (users.length === 0) {
+    await loadpreviousPage();
+    return;
+  }
+
+  state.users = users;
+};
 
 export default {
   loadNextPage,
