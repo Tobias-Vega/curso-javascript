@@ -15,4 +15,11 @@ const superHeroes = [
     id: 4,
     name: 'Aquaman',
   },
-]
+];
+
+const superHeroesCopy = structuredClone(superHeroes);
+
+superHeroesCopy[0].name = 'Green Lantern';
+
+console.table(superHeroes);
+console.table(superHeroesCopy);
